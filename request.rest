@@ -1,5 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhNzYzZTEyLTBiM2YtNDE5ZS05OTEzLTViOTU1NmY4M2FmZCIsInVzZXJOYW1lIjoiQWRtaW4xIiwiZW1haWwiOiIiLCJjcmVhdGVkQXQiOiIyMDI1LTA3LTMxVDA3OjMwOjA3LjgxOFoiLCJpYXQiOjE3NTM5Njc2NzYsImV4cCI6MTc1Mzk2ODM5Nn0.oakcCFxyoc3pLe9FvbIzXbjRwzaAFIMEILh23OuxmgY
-
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3YTg1OWY4LTg1ZmEtNDNjNS04YTU0LWI1YjAzZmY4ZTA0MCIsInVzZXJOYW1lIjoiVGVzdEFkbWluMSIsImVtYWlsIjoiQWRtaW4xMjNAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyNS0wNy0zMVQwODoyODo1Ny43NjFaIiwiaWF0IjoxNzUzOTY4ODEwLCJleHAiOjE3NTM5Njk1MzB9.oHxA8HHZvpf4vfk-eWlncUOhjW4uMhLtthowkm7CDwM
 
 
 ###
@@ -12,7 +11,7 @@ Content-Type: application/json
 POST  http://localhost:5000/api/v1/auth/login
 Content-Type: application/json
 
-{     "userName"    : "Admin1",
+{     "userName"    : "TestAdmin1",
       "password" : "Admin123!"
 }
 
@@ -84,6 +83,14 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
+###
+POST  http://localhost:5000/api/v1/transaction/create-transaction
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
+{
+  "productId": "121504e4-f267-4e6a-8c25-8b60202504b6",
+  "quantity": 2
+}
 
 
