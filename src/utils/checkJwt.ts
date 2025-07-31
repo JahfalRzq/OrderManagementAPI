@@ -2,12 +2,12 @@ import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 import { JwtPayload } from '../types/JwtPayload'
 const { successResponse, errorResponse, validationResponse } = require('../utils/response')
-import { User } from '../model/User'
+import { user } from '../model/user'
 import { AppDataSource } from "../data-source";
 
 
 
-const userRepository     = AppDataSource.getRepository(User)
+const userRepository     = AppDataSource.getRepository(user)
 
 export const checkJwt = async (request: Request, response: Response, next: NextFunction) => {
   const authHeader = await request.get('Authorization')
