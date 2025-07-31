@@ -18,6 +18,7 @@ export const userSeeder = async (req: Request, res: Response) => {
             const newUser = new user()
             newUser.userName = data.userName
             newUser.password =  data.password
+            newUser.role = UserRole.ADMIN
             newUser.hashPassword()
             await userRepository.save(newUser)
         }
