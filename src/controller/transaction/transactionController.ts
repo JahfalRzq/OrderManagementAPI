@@ -73,3 +73,40 @@ export const createTransaction = async (req: Request, res: Response) => {
 };
 
 
+export const getTransactionHistoryByCustomer = async (req: Request, res: Response) => {
+  try {
+    const userAccess = await userRepository.findOne({
+      where: { id: req.jwtPayload.id },
+      relations: ['transaction']
+    });
+
+    if (!userAccess || userAccess.role !== UserRole.CUSTOMER) {
+      return res.status(403).send(errorResponse("Access Denied: Only CUSTOMER can access transaction history", 403));
+    }
+
+    const { page = 1, limit = 10 } = req.query;
+    const take = Number(limit);
+    const skip = (Number(page) - 1) * take;
+
+    const [transactions, total] = await transactionRepository.findAndCount({
+      where: {
+        user: { id: userAccess.id }
+      },
+      relations: ['product'],
+      order: { createdAt: "DESC" },
+      skip,
+      take
+    });
+
+    return res.status(200).send(successResponse("Riwayat transaksi berhasil diambil", {
+      total,
+      currentPage: Number(page),
+      totalPages: Math.ceil(total / take),
+      transactions
+    }, 200));
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+
