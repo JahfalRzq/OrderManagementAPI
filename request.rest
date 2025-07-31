@@ -1,6 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjOWEzNTUwLTg1MGUtNGFiNy05YmQwLWViZjJjZjhjYTFkZSIsInVzZXJOYW1lIjoiQWRtaW4xIiwicGFzc3dvcmQiOiJiMGFkNmZkNjhmOThiMzc4ZDQyMTliYWYwOWFhMWFkZjo0ZWE5NmQzYjE4NWNjNDdkMzVhZmJhMjE4MDdkODMyZSIsImNyZWF0ZWRBdCI6IjIwMjUtMDUtMjhUMDU6MzY6NDIuMTU1WiIsImlhdCI6MTc0ODQxMDYxNCwiZXhwIjoxNzUxMDAyNjE0fQ.mVQzRhD71D0rejsrfhJc7XHWfwg8NipIZvpKjxp7AsI
-
-
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhNzYzZTEyLTBiM2YtNDE5ZS05OTEzLTViOTU1NmY4M2FmZCIsInVzZXJOYW1lIjoiQWRtaW4xIiwiZW1haWwiOiIiLCJjcmVhdGVkQXQiOiIyMDI1LTA3LTMxVDA3OjMwOjA3LjgxOFoiLCJpYXQiOjE3NTM5NDkzODAsImV4cCI6MTc1Mzk1MDEwMH0.9X-z2Jc86mKQU7wVxs-k8Mo4nwe_RIBPpbE-TOjkP_s
 
 
 
@@ -8,7 +6,6 @@
 ###
 GET http://localhost:5000/api/v1/seeder/userSeeder
 Content-Type: application/json
-Authorization: Bearer {{token}}
 
 
 
@@ -19,5 +16,22 @@ Content-Type: application/json
 {     "userName"    : "Admin1",
       "password" : "Admin123!"
 }
+
+
+###
+POST  http://localhost:5000/api/v1/auth/login
+Content-Type: application/json
+
+{     "userName"    : "Admin1",
+      "password" : "Admin123!"
+}
+
+###
+GET  http://localhost:5000/api/v1/auth/fetch
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+
 
 

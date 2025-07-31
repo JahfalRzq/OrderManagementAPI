@@ -7,6 +7,17 @@ const { successResponse, errorResponse } = require('../../utils/response')
 
 const userRepository = AppDataSource.getRepository(user)
 
+export const fetch = async (req: Request, res: Response) => {
+    try {
+        const userFetch = await userRepository.findOneBy({ id: req.jwtPayload.id })
+
+            return res.status(200).send(successResponse('User Authorized', { data: userFetch }, 200))
+
+    } catch (error) {
+        return res.status(400).send(errorResponse(error, 400))
+    }
+}
+
 export const login = async (req: Request, res: Response) => {
     try {
         const { userName, password } = req.body
