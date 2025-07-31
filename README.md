@@ -38,7 +38,7 @@ npm install
 Jalankan server:
 
 ```
-npm run start
+npm start
 ```
 
 
