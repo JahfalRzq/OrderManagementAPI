@@ -12,4 +12,12 @@ Authorization: Bearer {{token}}
 
 
 
+###
+POST  http://localhost:5000/api/v1/auth/login
+Content-Type: application/json
+
+{     "userName"    : "Admin1",
+      "password" : "Admin123!"
+}
+
 
