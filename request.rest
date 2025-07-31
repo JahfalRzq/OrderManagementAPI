@@ -45,7 +45,7 @@ Authorization: Bearer {{token}}
 
 
 ###
-GET  http://localhost:5000/api/v1/product/get-all-product
+GET http://localhost:5000/api/v1/product/get-all-product?nameProduct=&quantity=&minPrice=&maxPrice=
 Content-Type: application/json
 
 ###
