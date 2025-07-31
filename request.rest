@@ -17,6 +17,17 @@ Content-Type: application/json
       "password" : "Admin123!"
 }
 
+###
+POST  http://localhost:5000/api/v1/auth/register
+Content-Type: application/json
+
+{     "userName"    : "TestAdmin1",
+      "email" :  "Admin123@gmail.com",
+      "password" :  "Admin123!",
+      "phone" :  "0895606104423"
+}
+
+
 
 ###
 POST  http://localhost:5000/api/v1/auth/login
