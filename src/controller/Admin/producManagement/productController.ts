@@ -15,7 +15,7 @@ const { successResponse, errorResponse,validationResponse } = require('../../../
 
 export const getAllProduct = async (req: Request, res: Response) => {
   try {
-    const { nameProduct, minPrice, maxPrice } = req.query;
+    const { nameProduct, minPrice, maxPrice,quantity } = req.query;
 
     const query = productRepository
       .createQueryBuilder("product")
@@ -24,6 +24,12 @@ export const getAllProduct = async (req: Request, res: Response) => {
     if (nameProduct) {
       query.andWhere("product.nameProduct LIKE :name", {
         name: `%${nameProduct}%`,
+      });
+    }
+
+    if (quantity) {
+      query.andWhere("product.quantity LIKE :name", {
+        quantityProduct: `%${quantity}%`,
       });
     }
 
@@ -57,6 +63,8 @@ const createProductSchema = (input) =>Joi.object({
     nameProduct: Joi.string().required(),
     descriptionProduct: Joi.string().required(),
     price: Joi.number().min(0).required(),
+    quantity: Joi.number().min(0).required(),
+
   }).validate(input);
   try {
     const body = req.body;
@@ -74,7 +82,7 @@ const createProductSchema = (input) =>Joi.object({
     newProduct.nameProduct = body.nameProduct;
     newProduct.descriptionProduct = body.descriptionProduct;
     newProduct.price = body.price;
-
+    newProduct.quantity = body.quantity;
     await productRepository.save(newProduct);
 
 
@@ -90,6 +98,7 @@ export const updateProduct = async (req: Request, res: Response) => {
     nameProduct: Joi.string().required(),
     descriptionProduct: Joi.string().required(),
     price: Joi.number().min(0).required(),
+    quantity: Joi.number().min(0).required(),
   }).validate(input);
   try {
     const { id } = req.params;
@@ -114,6 +123,8 @@ export const updateProduct = async (req: Request, res: Response) => {
     productToUpdate.nameProduct = body.nameProduct;
     productToUpdate.descriptionProduct = body.descriptionProduct;
     productToUpdate.price = body.price;
+    productToUpdate.quantity = body.quantity;
+
 
     await productRepository.save(productToUpdate);
 

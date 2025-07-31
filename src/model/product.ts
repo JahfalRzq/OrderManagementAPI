@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsNumber, IsOptional, IsString } from "class-validator";
 import { Entity,PrimaryGeneratedColumn,Column,CreateDateColumn,UpdateDateColumn,DeleteDateColumn, OneToMany } from "typeorm";
 import {transaction} from './transaction'
 
@@ -33,6 +33,14 @@ export class product {
     @IsString()
     @IsOptional()
     public price: string
+
+    @Column({
+    default: 0,
+    nullable: false
+    })
+    @IsNumber()
+    public quantity: number
+
 
     @Column({
         type: 'longtext',
